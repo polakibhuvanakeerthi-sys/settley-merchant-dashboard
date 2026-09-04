@@ -46,6 +46,12 @@
       "regex": "^/api/create\\-payment\\-link(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/api/create\\-payment\\-link(?:/)?$"
+    },
+    {
+      "page": "/api/webhooks/razorpay",
+      "regex": "^/api/webhooks/razorpay(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/webhooks/razorpay(?:/)?$"
     }
   ],
   "dataRoutes": [],

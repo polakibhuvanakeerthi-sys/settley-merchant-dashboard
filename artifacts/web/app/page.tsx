@@ -504,13 +504,14 @@ function MerchantWorkspace({ onLogout }: { onLogout: () => void }) {
       const result = (await response.json()) as {
         error?: string;
         short_url?: string;
+        order_id?: string;
       };
       if (!response.ok) {
         throw new Error(result.error || 'Unable to create payment link.');
       }
 
       const newOrder: Transaction = {
-        id: `ORD-${Date.now().toString().slice(-4)}`,
+        id: result.order_id || `ORD-${Date.now().toString().slice(-4)}`,
         customer: linkForm.customerName.trim(),
         phone: linkForm.phone.trim(),
         amount,

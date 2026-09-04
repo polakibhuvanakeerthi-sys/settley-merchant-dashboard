@@ -1,4 +1,5 @@
 import { Router, type IRouter, type Response } from "express";
+import { persistCreatedPaymentLink } from "@workspace/db/prisma";
 import { logger } from "../lib/logger";
 
 type PaymentLinkRequest = {
@@ -111,6 +112,37 @@ router.post("/create-payment-link", async (req, res) => {
       return errorResponse(res, providerError, response.status);
     }
 
+    if (typeof result.id !== "string") {
+      return errorResponse(
+        res,
+        "Razorpay returned an invalid payment-link response.",
+        502,
+      );
+    }
+
+    const persisted = await persistCreatedPaymentLink({
+      razorpayId: result.id,
+      shortUrl: typeof result.short_url === "string" ? result.short_url : undefined,
+      providerStatus:
+        typeof result.status === "string" ? result.status : undefined,
+      amount,
+      currency,
+      description,
+      customerName:
+        typeof customerPayload.name === "string"
+          ? customerPayload.name
+          : undefined,
+      customerEmail:
+        typeof customerPayload.email === "string"
+          ? customerPayload.email
+          : undefined,
+      customerContact:
+        typeof customerPayload.contact === "string"
+          ? customerPayload.contact
+          : undefined,
+      notes: body.notes,
+    });
+
     return res.json({
       id: result.id,
       short_url: result.short_url,
@@ -118,12 +150,14 @@ router.post("/create-payment-link", async (req, res) => {
       amount: result.amount,
       currency: result.currency,
       created_at: result.created_at,
+      order_id: persisted.transaction.orderId,
+      transaction_id: persisted.transaction.id,
     });
   } catch (error) {
-    logger.error({ err: error }, "Razorpay payment-link request failed");
+    logger.error({ err: error }, "Payment-link persistence request failed");
     return errorResponse(
       res,
-      "Unable to reach Razorpay. Please try again shortly.",
+      "Unable to create and save the payment link. Please try again shortly.",
       502,
     );
   }
