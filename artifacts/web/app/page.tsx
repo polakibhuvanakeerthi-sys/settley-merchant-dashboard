@@ -265,7 +265,7 @@ function LoginPage({ onLogin }: { onLogin: () => void }) {
               </div>
               <div>
               <p className="font-semibold tracking-tight">Settley</p>
-                <p className="text-xs text-blue-100">Merchant Terminal</p>
+                <p className="text-xs text-blue-100">Smart Merchant Reconciliation</p>
               </div>
             </div>
             <p className="max-w-sm text-4xl font-semibold leading-tight tracking-tight">
@@ -289,7 +289,7 @@ function LoginPage({ onLogin }: { onLogin: () => void }) {
               </div>
               <div>
                 <p className="font-semibold tracking-tight text-slate-900">Settley</p>
-                <p className="text-xs text-slate-500">Merchant Terminal</p>
+                <p className="text-xs text-slate-500">Smart Merchant Reconciliation</p>
               </div>
             </div>
           </div>
@@ -732,7 +732,7 @@ function MerchantWorkspace({ onLogout }: { onLogout: () => void }) {
       <section className="space-y-6">
         <PageIntro
           eyebrow="Control room"
-          title="Merchant reconciliation"
+          title="Settley — Smart Merchant Reconciliation"
           subtitle={t.subtitle}
           action={
             <div className="flex items-center gap-2">
@@ -782,7 +782,7 @@ function MerchantWorkspace({ onLogout }: { onLogout: () => void }) {
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-white font-bold shadow-md shadow-blue-500/20"><CreditCard className="h-5 w-5" /></div>
             <div>
               <p className="text-base font-semibold leading-none tracking-tight text-slate-900">Settley</p>
-              <span className="text-xs font-medium text-slate-500">Merchant Terminal</span>
+              <span className="text-xs font-medium text-slate-500">Smart Merchant Reconciliation</span>
             </div>
           </button>
           <div className="flex items-center gap-3">
@@ -813,7 +813,7 @@ function MerchantWorkspace({ onLogout }: { onLogout: () => void }) {
 
       {toast && <div className="fixed bottom-5 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-xs font-medium text-white shadow-xl"><CheckCircle2 className="h-4 w-4 text-emerald-400" />{toast}</div>}
 
-      <button onClick={() => setIsChatOpen(true)} className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white shadow-xl shadow-blue-600/30 transition hover:scale-105 hover:bg-blue-700" aria-label="Open AI Help Assistant">
+      <button onClick={() => setIsChatOpen(true)} className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white shadow-xl shadow-blue-600/30 transition hover:scale-105 hover:bg-blue-700" aria-label="Open Settley AI Help">
         <Bot className="h-6 w-6" />
       </button>
 
@@ -895,5 +895,5 @@ function EmptyState({ icon, title, detail }: { icon: React.ReactNode; title: str
 }
 
 function ChatDrawer({ messages, input, onInput, onClose, onSend }: { messages: ChatMessage[]; input: string; onInput: (value: string) => void; onClose: () => void; onSend: (event?: React.FormEvent<HTMLFormElement>) => void }) {
-  return <div className="fixed bottom-24 right-6 z-50 flex h-[min(600px,calc(100vh-8rem))] w-[min(390px,calc(100vw-3rem))] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl"><div className="flex items-center justify-between bg-slate-950 px-5 py-4 text-white"><div className="flex items-center gap-3"><div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600"><Bot className="h-5 w-5" /></div><div><p className="text-sm font-semibold">AI Help Assistant</p><p className="text-[10px] text-slate-300">Instant merchant support</p></div></div><button onClick={onClose} className="rounded-lg p-1.5 text-slate-300 transition hover:bg-white/10 hover:text-white" aria-label="Close assistant"><X className="h-4 w-4" /></button></div><div className="flex-1 space-y-4 overflow-y-auto bg-slate-50 p-4">{messages.map((message) => <div key={message.id} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}><div className={`max-w-[86%] rounded-2xl px-3.5 py-3 text-xs leading-5 ${message.role === 'user' ? 'rounded-br-md bg-blue-600 text-white' : 'rounded-bl-md border border-slate-200 bg-white text-slate-700 shadow-sm'}`}>{message.text}</div></div>)}</div><div className="border-t border-slate-200 bg-white p-3"><form className="flex items-center gap-2" onSubmit={onSend}><input value={input} onChange={(event) => onInput(event.target.value)} className="min-w-0 flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-xs outline-none transition focus:border-blue-500 focus:bg-white" placeholder="Ask about a payment…" aria-label="Ask AI Help Assistant" /><button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white transition hover:bg-blue-700" aria-label="Send question" type="submit"><Send className="h-4 w-4" /></button></form><p className="mt-2 text-center text-[10px] text-slate-400">Try: “Why is order ORD-9480 pending?”</p></div></div>;
+  return <div className="fixed bottom-24 right-6 z-50 flex h-[min(600px,calc(100vh-8rem))] w-[min(390px,calc(100vw-3rem))] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl"><div className="flex items-center justify-between bg-slate-950 px-5 py-4 text-white"><div className="flex items-center gap-3"><div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600"><Bot className="h-5 w-5" /></div><div><p className="text-sm font-semibold">Settley AI Help</p><p className="text-[10px] text-slate-300">Instant merchant support</p></div></div><button onClick={onClose} className="rounded-lg p-1.5 text-slate-300 transition hover:bg-white/10 hover:text-white" aria-label="Close Settley AI Help"><X className="h-4 w-4" /></button></div><div className="flex-1 space-y-4 overflow-y-auto bg-slate-50 p-4">{messages.map((message) => <div key={message.id} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}><div className={`max-w-[86%] rounded-2xl px-3.5 py-3 text-xs leading-5 ${message.role === 'user' ? 'rounded-br-md bg-blue-600 text-white' : 'rounded-bl-md border border-slate-200 bg-white text-slate-700 shadow-sm'}`}>{message.text}</div></div>)}</div><div className="border-t border-slate-200 bg-white p-3"><form className="flex items-center gap-2" onSubmit={onSend}><input value={input} onChange={(event) => onInput(event.target.value)} className="min-w-0 flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-xs outline-none transition focus:border-blue-500 focus:bg-white" placeholder="Ask about a payment…" aria-label="Ask Settley AI Help" /><button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white transition hover:bg-blue-700" aria-label="Send question to Settley AI Help" type="submit"><Send className="h-4 w-4" /></button></form><p className="mt-2 text-center text-[10px] text-slate-400">Try: “Why is order ORD-9480 pending?”</p></div></div>;
 }
