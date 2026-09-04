@@ -1,3 +1,3 @@
-module.exports=[97652,a=>{"use strict";var b=a.i(72911);a.s(["default",0,function({children:a}){return(0,b.jsx)("html",{lang:"en",children:(0,b.jsx)("body",{children:a})})},"metadata",0,{title:"Merchant Reconciliation Dashboard",description:"Monitor payment volume, settlement health, payout mismatches, and reconciliation exceptions."}])},98846,function(a){a.n(a.i(97652))}];
+module.exports=[97652,a=>{"use strict";var b=a.i(72911);a.s(["default",0,function({children:a}){return(0,b.jsx)("html",{lang:"en",children:(0,b.jsx)("body",{children:a})})},"metadata",0,{title:"Settley — Smart Merchant Reconciliation",description:"Settley — Smart Merchant Reconciliation for payment links, settlements, and transaction health.",icons:{icon:"/favicon.svg"}}])},98846,function(a){a.n(a.i(97652))}];
 
 //# sourceMappingURL=artifacts_web_app_layout_tsx_0gv89wk._.js.map
