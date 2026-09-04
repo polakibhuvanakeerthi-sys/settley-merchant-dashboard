@@ -2,9 +2,12 @@ import type { Metadata } from 'next';
 import '@/index.css';
 
 export const metadata: Metadata = {
-  title: 'Merchant Reconciliation Dashboard',
+  title: 'Settley — Smart Merchant Reconciliation',
   description:
-    'Monitor payment volume, settlement health, payout mismatches, and reconciliation exceptions.',
+    'Settley — Smart Merchant Reconciliation for payment links, settlements, and transaction health.',
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({

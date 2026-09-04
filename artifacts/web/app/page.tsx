@@ -264,7 +264,7 @@ function LoginPage({ onLogin }: { onLogin: () => void }) {
                 <ShieldCheck className="h-5 w-5" />
               </div>
               <div>
-                <p className="font-semibold tracking-tight">ReconcilePro</p>
+              <p className="font-semibold tracking-tight">Settley</p>
                 <p className="text-xs text-blue-100">Merchant Terminal</p>
               </div>
             </div>
@@ -288,7 +288,7 @@ function LoginPage({ onLogin }: { onLogin: () => void }) {
                 <CreditCard className="h-5 w-5" />
               </div>
               <div>
-                <p className="font-semibold tracking-tight text-slate-900">ReconcilePro</p>
+                <p className="font-semibold tracking-tight text-slate-900">Settley</p>
                 <p className="text-xs text-slate-500">Merchant Terminal</p>
               </div>
             </div>
@@ -372,7 +372,7 @@ function MerchantWorkspace({ onLogout }: { onLogout: () => void }) {
     {
       id: 1,
       role: 'assistant',
-      text: 'Hi! I can help explain settlements, failed transactions, payment links, or refunds.',
+      text: "Hi! I'm Settley Assistant. How can I help you with your transactions or settlements today?",
     },
   ]);
 
@@ -781,7 +781,7 @@ function MerchantWorkspace({ onLogout }: { onLogout: () => void }) {
           <button onClick={() => navigate('Overview')} className="flex items-center gap-3 text-left">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-white font-bold shadow-md shadow-blue-500/20"><CreditCard className="h-5 w-5" /></div>
             <div>
-              <p className="text-base font-semibold leading-none tracking-tight text-slate-900">ReconcilePro</p>
+              <p className="text-base font-semibold leading-none tracking-tight text-slate-900">Settley</p>
               <span className="text-xs font-medium text-slate-500">Merchant Terminal</span>
             </div>
           </button>
