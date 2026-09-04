@@ -2,6 +2,7 @@ import express, { type Express } from "express";
 import cors from "cors";
 import pinoHttp from "pino-http";
 import router from "./routes";
+import razorpayWebhookRouter from "./routes/razorpay-webhook";
 import { logger } from "./lib/logger";
 
 const app: Express = express();
@@ -26,6 +27,11 @@ app.use(
   }),
 );
 app.use(cors());
+app.use(
+  "/api/webhooks/razorpay",
+  express.raw({ type: "application/json" }),
+  razorpayWebhookRouter,
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

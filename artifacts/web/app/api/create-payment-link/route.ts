@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { persistCreatedPaymentLink } from '@workspace/db/prisma';
 
 type PaymentLinkRequest = {
   amount?: unknown;
@@ -112,6 +113,32 @@ export async function POST(request: Request) {
       return errorResponse(providerError, response.status);
     }
 
+    if (typeof result.id !== 'string') {
+      return errorResponse('Razorpay returned an invalid payment-link response.', 502);
+    }
+
+    const persisted = await persistCreatedPaymentLink({
+      razorpayId: result.id,
+      shortUrl: typeof result.short_url === 'string' ? result.short_url : undefined,
+      providerStatus: typeof result.status === 'string' ? result.status : undefined,
+      amount,
+      currency,
+      description,
+      customerName:
+        typeof customerPayload.name === 'string'
+          ? customerPayload.name
+          : undefined,
+      customerEmail:
+        typeof customerPayload.email === 'string'
+          ? customerPayload.email
+          : undefined,
+      customerContact:
+        typeof customerPayload.contact === 'string'
+          ? customerPayload.contact
+          : undefined,
+      notes: body.notes,
+    });
+
     return NextResponse.json({
       id: result.id,
       short_url: result.short_url,
@@ -119,11 +146,13 @@ export async function POST(request: Request) {
       amount: result.amount,
       currency: result.currency,
       created_at: result.created_at,
+      order_id: persisted.transaction.orderId,
+      transaction_id: persisted.transaction.id,
     });
   } catch (error) {
-    console.error('Razorpay payment-link request failed', error);
+    console.error('Payment-link request failed', error);
     return errorResponse(
-      'Unable to reach Razorpay. Please try again shortly.',
+      'Unable to create and save the payment link. Please try again shortly.',
       502,
     );
   }

@@ -2,5 +2,6 @@
   "/_global-error/page": "/_global-error",
   "/_not-found/page": "/_not-found",
   "/api/create-payment-link/route": "/api/create-payment-link",
+  "/api/webhooks/razorpay/route": "/api/webhooks/razorpay",
   "/page": "/"
 }

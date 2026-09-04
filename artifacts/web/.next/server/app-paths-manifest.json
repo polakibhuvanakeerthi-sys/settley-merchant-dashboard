@@ -2,5 +2,6 @@
   "/_global-error/page": "app/_global-error/page.js",
   "/_not-found/page": "app/_not-found/page.js",
   "/api/create-payment-link/route": "app/api/create-payment-link/route.js",
+  "/api/webhooks/razorpay/route": "app/api/webhooks/razorpay/route.js",
   "/page": "app/page.js"
 }
