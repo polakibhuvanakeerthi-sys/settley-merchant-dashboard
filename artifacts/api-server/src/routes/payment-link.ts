@@ -1,4 +1,5 @@
 import { Router, type IRouter, type Response } from "express";
+import { randomUUID } from "node:crypto";
 import { persistCreatedPaymentLink } from "@workspace/db/prisma";
 import { logger } from "../lib/logger";
 
@@ -21,17 +22,70 @@ function errorResponse(res: Response, message: string, status: number) {
   return res.status(status).json({ error: message });
 }
 
+function isAuthenticationError(status: number | undefined, message: string) {
+  return (
+    status === 401 ||
+    /authentication failed|unauthori[sz]ed|invalid (?:api )?key|invalid credential/i.test(
+      message,
+    )
+  );
+}
+
+async function createDemoPaymentLinkResponse(
+  res: Response,
+  input: {
+    amount: number;
+    currency: string;
+    description: string;
+    customer: {
+      name?: string;
+      email?: string;
+      contact?: string;
+    };
+    notes?: Record<string, string>;
+  },
+) {
+  const demoId = `demo_settley_${randomUUID().replaceAll("-", "").slice(0, 12)}`;
+  const shortUrl = `https://razorpay.com/pay/${demoId}`;
+
+  let orderId = `DEMO-${demoId.replace("demo_settley_", "").toUpperCase()}`;
+  let transactionId: string | undefined;
+
+  try {
+    const persisted = await persistCreatedPaymentLink({
+      razorpayId: demoId,
+      shortUrl,
+      providerStatus: "demo",
+      amount: input.amount,
+      currency: input.currency,
+      description: input.description,
+      customerName: input.customer.name,
+      customerEmail: input.customer.email,
+      customerContact: input.customer.contact,
+      notes: input.notes,
+    });
+    orderId = persisted.transaction.orderId;
+    transactionId = persisted.transaction.id;
+  } catch (error) {
+    logger.error({ err: error }, "Unable to persist demo payment link");
+  }
+
+  return res.json({
+    id: demoId,
+    short_url: shortUrl,
+    status: "created",
+    amount: input.amount,
+    currency: input.currency,
+    created_at: Math.floor(Date.now() / 1000),
+    order_id: orderId,
+    transaction_id: transactionId,
+    demo: true,
+  });
+}
+
 router.post("/create-payment-link", async (req, res) => {
   const keyId = process.env.RAZORPAY_KEY_ID;
   const keySecret = process.env.RAZORPAY_KEY_SECRET;
-
-  if (!keyId || !keySecret) {
-    return errorResponse(
-      res,
-      "Razorpay is not configured. Add RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET to the environment.",
-      503,
-    );
-  }
 
   const body = (req.body ?? {}) as PaymentLinkRequest;
   const amount =
@@ -88,6 +142,17 @@ router.post("/create-payment-link", async (req, res) => {
     ...(body.notes ? { notes: body.notes } : {}),
   };
 
+  if (!keyId?.trim() || !keySecret?.trim()) {
+    logger.warn("Razorpay credentials are missing; using a demo payment link");
+    return createDemoPaymentLinkResponse(res, {
+      amount,
+      currency,
+      description,
+      customer: customerPayload,
+      notes: body.notes,
+    });
+  }
+
   try {
     const response = await fetch("https://api.razorpay.com/v1/payment_links", {
       method: "POST",
@@ -98,7 +163,13 @@ router.post("/create-payment-link", async (req, res) => {
       body: JSON.stringify(payload),
     });
 
-    const result = (await response.json()) as Record<string, unknown>;
+    const responseText = await response.text();
+    let result: Record<string, unknown> = {};
+    try {
+      result = JSON.parse(responseText) as Record<string, unknown>;
+    } catch {
+      // Keep the provider response empty so the status code can still drive fallback behavior.
+    }
 
     if (!response.ok) {
       const providerError =
@@ -108,6 +179,17 @@ router.post("/create-payment-link", async (req, res) => {
         typeof result.error.description === "string"
           ? result.error.description
           : "Razorpay rejected the payment-link request.";
+
+      if (isAuthenticationError(response.status, providerError)) {
+        logger.warn("Razorpay authentication failed; using a demo payment link");
+        return createDemoPaymentLinkResponse(res, {
+          amount,
+          currency,
+          description,
+          customer: customerPayload,
+          notes: body.notes,
+        });
+      }
 
       return errorResponse(res, providerError, response.status);
     }
@@ -154,6 +236,18 @@ router.post("/create-payment-link", async (req, res) => {
       transaction_id: persisted.transaction.id,
     });
   } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    if (isAuthenticationError(undefined, message)) {
+      logger.warn("Razorpay authentication threw an error; using a demo payment link");
+      return createDemoPaymentLinkResponse(res, {
+        amount,
+        currency,
+        description,
+        customer: customerPayload,
+        notes: body.notes,
+      });
+    }
+
     logger.error({ err: error }, "Payment-link persistence request failed");
     return errorResponse(
       res,

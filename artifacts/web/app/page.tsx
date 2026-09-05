@@ -359,6 +359,7 @@ function MerchantWorkspace({ onLogout }: { onLogout: () => void }) {
   const [isCreatingLink, setIsCreatingLink] = useState(false);
   const [formError, setFormError] = useState('');
   const [createdPaymentLink, setCreatedPaymentLink] = useState('');
+  const [createdPaymentLinkIsDemo, setCreatedPaymentLinkIsDemo] = useState(false);
   const [linkForm, setLinkForm] = useState({
     customerName: '',
     phone: '',
@@ -505,6 +506,7 @@ function MerchantWorkspace({ onLogout }: { onLogout: () => void }) {
         error?: string;
         short_url?: string;
         order_id?: string;
+        demo?: boolean;
       };
       if (!response.ok) {
         throw new Error(result.error || 'Unable to create payment link.');
@@ -516,14 +518,19 @@ function MerchantWorkspace({ onLogout }: { onLogout: () => void }) {
         phone: linkForm.phone.trim(),
         amount,
         status: 'Pending',
-        method: 'Razorpay Link',
+        method: result.demo ? 'Demo Link' : 'Razorpay Link',
         date: 'Just now',
         paymentLink: result.short_url,
       };
       setTransactions((current) => [newOrder, ...current]);
       setCreatedPaymentLink(result.short_url || '');
+      setCreatedPaymentLinkIsDemo(Boolean(result.demo));
       setLinkForm({ customerName: '', phone: '', item: '', amount: '' });
-      setToast('Payment link created · new order added as Pending');
+      setToast(
+        result.demo
+          ? 'Demo payment link created · new order added as Pending'
+          : 'Payment link created · new order added as Pending',
+      );
     } catch (error) {
       setFormError(
         error instanceof Error ? error.message : 'Unable to create payment link.',
@@ -741,7 +748,7 @@ function MerchantWorkspace({ onLogout }: { onLogout: () => void }) {
                 <RefreshCw className={`h-3.5 w-3.5 ${isSyncing ? 'animate-spin' : ''}`} />
                 {isSyncing ? 'Syncing…' : t.sync}
               </button>
-              <button onClick={() => { setCreatedPaymentLink(''); setFormError(''); setIsLinkModalOpen(true); }} className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-xs font-semibold text-white shadow-md shadow-blue-600/20 transition hover:bg-blue-700">
+              <button onClick={() => { setCreatedPaymentLink(''); setCreatedPaymentLinkIsDemo(false); setFormError(''); setIsLinkModalOpen(true); }} className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-xs font-semibold text-white shadow-md shadow-blue-600/20 transition hover:bg-blue-700">
                 <Plus className="h-4 w-4" />
                 {t.createLink}
               </button>
@@ -829,7 +836,8 @@ function MerchantWorkspace({ onLogout }: { onLogout: () => void }) {
             </div>
             {createdPaymentLink ? (
               <div className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">
-                <div className="flex items-center gap-2 text-sm font-semibold text-emerald-800"><CheckCircle2 className="h-4 w-4" /> Payment link created</div>
+                <div className="flex items-center gap-2 text-sm font-semibold text-emerald-800"><CheckCircle2 className="h-4 w-4" /> {createdPaymentLinkIsDemo ? 'Demo payment link created' : 'Payment link created'}</div>
+                {createdPaymentLinkIsDemo && <p className="mt-2 text-xs leading-5 text-amber-800">Razorpay credentials are unavailable or invalid, so this is a demo link for testing. Add valid keys to create a live payment link.</p>}
                 <p className="mt-2 break-all rounded-lg bg-white p-3 text-xs text-slate-600">{createdPaymentLink}</p>
                 <div className="mt-3 flex gap-2">
                   <button onClick={() => { navigator.clipboard?.writeText(createdPaymentLink); setToast('Payment link copied'); }} className="rounded-lg bg-emerald-700 px-3 py-2 text-xs font-semibold text-white">Copy link</button>

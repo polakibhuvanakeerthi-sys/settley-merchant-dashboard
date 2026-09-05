@@ -555,6 +555,7 @@ function MerchantWorkspace({ onLogout }) {
     const [isCreatingLink, setIsCreatingLink] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [formError, setFormError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
     const [createdPaymentLink, setCreatedPaymentLink] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
+    const [createdPaymentLinkIsDemo, setCreatedPaymentLinkIsDemo] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [linkForm, setLinkForm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
         customerName: '',
         phone: '',
@@ -705,7 +706,7 @@ function MerchantWorkspace({ onLogout }) {
                 phone: linkForm.phone.trim(),
                 amount,
                 status: 'Pending',
-                method: 'Razorpay Link',
+                method: result.demo ? 'Demo Link' : 'Razorpay Link',
                 date: 'Just now',
                 paymentLink: result.short_url
             };
@@ -714,13 +715,14 @@ function MerchantWorkspace({ onLogout }) {
                     ...current
                 ]);
             setCreatedPaymentLink(result.short_url || '');
+            setCreatedPaymentLinkIsDemo(Boolean(result.demo));
             setLinkForm({
                 customerName: '',
                 phone: '',
                 item: '',
                 amount: ''
             });
-            setToast('Payment link created · new order added as Pending');
+            setToast(result.demo ? 'Demo payment link created · new order added as Pending' : 'Payment link created · new order added as Pending');
         } catch (error) {
             setFormError(error instanceof Error ? error.message : 'Unable to create payment link.');
         } finally{
@@ -769,19 +771,19 @@ function MerchantWorkspace({ onLogout }) {
                                     className: "h-4 w-4"
                                 }, void 0, false, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 572,
+                                    lineNumber: 579,
                                     columnNumber: 17
                                 }, this),
                                 t.createLink
                             ]
                         }, void 0, true, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 568,
+                            lineNumber: 575,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 563,
+                        lineNumber: 570,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(TransactionTable, {
@@ -796,13 +798,13 @@ function MerchantWorkspace({ onLogout }) {
                         onDetails: (transaction)=>setToast(transaction.paymentLink ? `Payment link: ${transaction.paymentLink}` : `${transaction.id} · ${transaction.status}`)
                     }, void 0, false, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 577,
+                        lineNumber: 584,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 562,
+                lineNumber: 569,
                 columnNumber: 9
             }, this);
         }
@@ -823,19 +825,19 @@ function MerchantWorkspace({ onLogout }) {
                                     className: `h-3.5 w-3.5 ${isSyncing ? 'animate-spin' : ''}`
                                 }, void 0, false, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 611,
+                                    lineNumber: 618,
                                     columnNumber: 17
                                 }, this),
                                 isSyncing ? 'Syncing…' : t.sync
                             ]
                         }, void 0, true, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 606,
+                            lineNumber: 613,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 601,
+                        lineNumber: 608,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -848,13 +850,13 @@ function MerchantWorkspace({ onLogout }) {
                                     className: "h-4 w-4 text-emerald-600"
                                 }, void 0, false, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 617,
+                                    lineNumber: 624,
                                     columnNumber: 86
                                 }, this),
                                 detail: "Auto-settled to HDFC Bank ****4012"
                             }, void 0, false, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 617,
+                                lineNumber: 624,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(InfoCard, {
@@ -864,13 +866,13 @@ function MerchantWorkspace({ onLogout }) {
                                     className: "h-4 w-4 text-amber-500"
                                 }, void 0, false, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 618,
+                                    lineNumber: 625,
                                     columnNumber: 90
                                 }, this),
                                 detail: `${transactions.filter((item)=>item.status === 'Pending').length} records in the next batch`
                             }, void 0, false, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 618,
+                                lineNumber: 625,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(InfoCard, {
@@ -880,19 +882,19 @@ function MerchantWorkspace({ onLogout }) {
                                     className: "h-4 w-4 text-blue-600"
                                 }, void 0, false, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 619,
+                                    lineNumber: 626,
                                     columnNumber: 76
                                 }, this),
                                 detail: "Razorpay Smart Router connected"
                             }, void 0, false, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 619,
+                                lineNumber: 626,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 616,
+                        lineNumber: 623,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -908,7 +910,7 @@ function MerchantWorkspace({ onLogout }) {
                                                 children: "Settlement timeline"
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 624,
+                                                lineNumber: 631,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -916,26 +918,26 @@ function MerchantWorkspace({ onLogout }) {
                                                 children: "Recent processor checkpoints for this merchant."
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 625,
+                                                lineNumber: 632,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 623,
+                                        lineNumber: 630,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$lucide$2d$react$40$0$2e$545$2e$0_react$40$19$2e$1$2e$0$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wallet$2d$cards$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__WalletCards$3e$__["WalletCards"], {
                                         className: "h-5 w-5 text-blue-600"
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 627,
+                                        lineNumber: 634,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 622,
+                                lineNumber: 629,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -968,25 +970,25 @@ function MerchantWorkspace({ onLogout }) {
                                                             className: "h-3.5 w-3.5"
                                                         }, void 0, false, {
                                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                                            lineNumber: 638,
+                                                            lineNumber: 645,
                                                             columnNumber: 48
                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$lucide$2d$react$40$0$2e$545$2e$0_react$40$19$2e$1$2e$0$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__["Clock"], {
                                                             className: "h-3.5 w-3.5"
                                                         }, void 0, false, {
                                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                                            lineNumber: 638,
+                                                            lineNumber: 645,
                                                             columnNumber: 84
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                                        lineNumber: 637,
+                                                        lineNumber: 644,
                                                         columnNumber: 21
                                                     }, this),
                                                     title
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 636,
+                                                lineNumber: 643,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -994,7 +996,7 @@ function MerchantWorkspace({ onLogout }) {
                                                 children: detail
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 642,
+                                                lineNumber: 649,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1002,30 +1004,30 @@ function MerchantWorkspace({ onLogout }) {
                                                 children: status
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 643,
+                                                lineNumber: 650,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, title, true, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 635,
+                                        lineNumber: 642,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 629,
+                                lineNumber: 636,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 621,
+                        lineNumber: 628,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 600,
+                lineNumber: 607,
                 columnNumber: 9
             }, this);
         }
@@ -1046,12 +1048,12 @@ function MerchantWorkspace({ onLogout }) {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 660,
+                            lineNumber: 667,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 656,
+                        lineNumber: 663,
                         columnNumber: 11
                     }, this),
                     exceptionTransactions.length ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1073,7 +1075,7 @@ function MerchantWorkspace({ onLogout }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                                        lineNumber: 668,
+                                                        lineNumber: 675,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1085,13 +1087,13 @@ function MerchantWorkspace({ onLogout }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                                        lineNumber: 669,
+                                                        lineNumber: 676,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 667,
+                                                lineNumber: 674,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(StatusPill, {
@@ -1099,13 +1101,13 @@ function MerchantWorkspace({ onLogout }) {
                                                 t: t
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 671,
+                                                lineNumber: 678,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 666,
+                                        lineNumber: 673,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1113,7 +1115,7 @@ function MerchantWorkspace({ onLogout }) {
                                         children: formatINR(transaction.amount)
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 673,
+                                        lineNumber: 680,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1121,7 +1123,7 @@ function MerchantWorkspace({ onLogout }) {
                                         children: transaction.status === 'Pending' ? 'The processor has not confirmed this payment in a settlement batch yet.' : 'The payment attempt failed before settlement. Create a new link if the customer wants to retry.'
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 674,
+                                        lineNumber: 681,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1133,7 +1135,7 @@ function MerchantWorkspace({ onLogout }) {
                                                 children: "View transaction"
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 680,
+                                                lineNumber: 687,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1142,44 +1144,44 @@ function MerchantWorkspace({ onLogout }) {
                                                 children: "Assign for review"
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 681,
+                                                lineNumber: 688,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 679,
+                                        lineNumber: 686,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, transaction.id, true, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 665,
+                                lineNumber: 672,
                                 columnNumber: 17
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 663,
+                        lineNumber: 670,
                         columnNumber: 13
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(EmptyState, {
                         icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$lucide$2d$react$40$0$2e$545$2e$0_react$40$19$2e$1$2e$0$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
                             className: "h-6 w-6"
                         }, void 0, false, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 687,
+                            lineNumber: 694,
                             columnNumber: 31
                         }, this),
                         title: "All clear",
                         detail: "There are no pending or failed payments right now."
                     }, void 0, false, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 687,
+                        lineNumber: 694,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 655,
+                lineNumber: 662,
                 columnNumber: 9
             }, this);
         }
@@ -1193,7 +1195,7 @@ function MerchantWorkspace({ onLogout }) {
                         subtitle: "Manage your merchant profile and connected payment operations."
                     }, void 0, false, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 696,
+                        lineNumber: 703,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1210,7 +1212,7 @@ function MerchantWorkspace({ onLogout }) {
                                                 children: "VK"
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 700,
+                                                lineNumber: 707,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1220,7 +1222,7 @@ function MerchantWorkspace({ onLogout }) {
                                                         children: "Vikram Kumar"
                                                     }, void 0, false, {
                                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                                        lineNumber: 702,
+                                                        lineNumber: 709,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1228,19 +1230,19 @@ function MerchantWorkspace({ onLogout }) {
                                                         children: "Acme Retail India · Owner"
                                                     }, void 0, false, {
                                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                                        lineNumber: 703,
+                                                        lineNumber: 710,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 701,
+                                                lineNumber: 708,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 699,
+                                        lineNumber: 706,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1251,7 +1253,7 @@ function MerchantWorkspace({ onLogout }) {
                                                 value: "vikram@acmeretail.in"
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 707,
+                                                lineNumber: 714,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SettingRow, {
@@ -1259,7 +1261,7 @@ function MerchantWorkspace({ onLogout }) {
                                                 value: "+91 99887 76655"
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 708,
+                                                lineNumber: 715,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SettingRow, {
@@ -1267,7 +1269,7 @@ function MerchantWorkspace({ onLogout }) {
                                                 value: "INR · ₹"
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 709,
+                                                lineNumber: 716,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SettingRow, {
@@ -1275,19 +1277,19 @@ function MerchantWorkspace({ onLogout }) {
                                                 value: "Asia/Kolkata"
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 710,
+                                                lineNumber: 717,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 706,
+                                        lineNumber: 713,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 698,
+                                lineNumber: 705,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1302,12 +1304,12 @@ function MerchantWorkspace({ onLogout }) {
                                                     className: "h-5 w-5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                                    lineNumber: 715,
+                                                    lineNumber: 722,
                                                     columnNumber: 113
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 715,
+                                                lineNumber: 722,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1317,7 +1319,7 @@ function MerchantWorkspace({ onLogout }) {
                                                         children: "Payment connection"
                                                     }, void 0, false, {
                                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                                        lineNumber: 717,
+                                                        lineNumber: 724,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1325,19 +1327,19 @@ function MerchantWorkspace({ onLogout }) {
                                                         children: "Razorpay credentials are securely connected."
                                                     }, void 0, false, {
                                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                                        lineNumber: 718,
+                                                        lineNumber: 725,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 716,
+                                                lineNumber: 723,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 714,
+                                        lineNumber: 721,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1350,14 +1352,14 @@ function MerchantWorkspace({ onLogout }) {
                                                         className: "h-4 w-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                                        lineNumber: 722,
+                                                        lineNumber: 729,
                                                         columnNumber: 72
                                                     }, this),
                                                     " Razorpay Smart Router Active"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 722,
+                                                lineNumber: 729,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1365,13 +1367,13 @@ function MerchantWorkspace({ onLogout }) {
                                                 children: "Payment links and settlement sync are ready for this workspace."
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 723,
+                                                lineNumber: 730,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 721,
+                                        lineNumber: 728,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1382,32 +1384,32 @@ function MerchantWorkspace({ onLogout }) {
                                                 className: "h-3.5 w-3.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 725,
+                                                lineNumber: 732,
                                                 columnNumber: 201
                                             }, this),
                                             " Sign out"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 725,
+                                        lineNumber: 732,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 713,
+                                lineNumber: 720,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 697,
+                        lineNumber: 704,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 695,
+                lineNumber: 702,
                 columnNumber: 9
             }, this);
         }
@@ -1430,19 +1432,20 @@ function MerchantWorkspace({ onLogout }) {
                                         className: `h-3.5 w-3.5 ${isSyncing ? 'animate-spin' : ''}`
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 741,
+                                        lineNumber: 748,
                                         columnNumber: 17
                                     }, this),
                                     isSyncing ? 'Syncing…' : t.sync
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 740,
+                                lineNumber: 747,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: ()=>{
                                     setCreatedPaymentLink('');
+                                    setCreatedPaymentLinkIsDemo(false);
                                     setFormError('');
                                     setIsLinkModalOpen(true);
                                 },
@@ -1452,25 +1455,25 @@ function MerchantWorkspace({ onLogout }) {
                                         className: "h-4 w-4"
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 745,
+                                        lineNumber: 752,
                                         columnNumber: 17
                                     }, this),
                                     t.createLink
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 744,
+                                lineNumber: 751,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 739,
+                        lineNumber: 746,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/artifacts/web/app/page.tsx",
-                    lineNumber: 734,
+                    lineNumber: 741,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1483,14 +1486,14 @@ function MerchantWorkspace({ onLogout }) {
                                 className: "h-4 w-4 text-blue-600"
                             }, void 0, false, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 752,
+                                lineNumber: 759,
                                 columnNumber: 131
                             }, this),
                             detail: "+12.4% vs last week",
                             detailClass: "text-emerald-600"
                         }, void 0, false, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 752,
+                            lineNumber: 759,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(MetricCard, {
@@ -1500,13 +1503,13 @@ function MerchantWorkspace({ onLogout }) {
                                 className: "h-4 w-4 text-emerald-600"
                             }, void 0, false, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 753,
+                                lineNumber: 760,
                                 columnNumber: 86
                             }, this),
                             detail: "Auto-settled to HDFC Bank ****4012"
                         }, void 0, false, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 753,
+                            lineNumber: 760,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(MetricCard, {
@@ -1516,14 +1519,14 @@ function MerchantWorkspace({ onLogout }) {
                                 className: "h-4 w-4 text-amber-500"
                             }, void 0, false, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 754,
+                                lineNumber: 761,
                                 columnNumber: 82
                             }, this),
                             detail: `${transactions.filter((item)=>item.status === 'Pending').length} transactions require review`,
                             detailClass: "text-amber-600"
                         }, void 0, false, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 754,
+                            lineNumber: 761,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(MetricCard, {
@@ -1533,20 +1536,20 @@ function MerchantWorkspace({ onLogout }) {
                                 className: "h-4 w-4 text-blue-600"
                             }, void 0, false, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 755,
+                                lineNumber: 762,
                                 columnNumber: 65
                             }, this),
                             detail: "Razorpay Smart Router Active",
                             detailClass: "text-emerald-600"
                         }, void 0, false, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 755,
+                            lineNumber: 762,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/artifacts/web/app/page.tsx",
-                    lineNumber: 751,
+                    lineNumber: 758,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(TransactionTable, {
@@ -1561,13 +1564,13 @@ function MerchantWorkspace({ onLogout }) {
                     onDetails: (transaction)=>setToast(transaction.paymentLink ? `Payment link: ${transaction.paymentLink}` : `${transaction.id} · ${transaction.status}`)
                 }, void 0, false, {
                     fileName: "[project]/artifacts/web/app/page.tsx",
-                    lineNumber: 757,
+                    lineNumber: 764,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/artifacts/web/app/page.tsx",
-            lineNumber: 733,
+            lineNumber: 740,
             columnNumber: 7
         }, this);
     };
@@ -1589,12 +1592,12 @@ function MerchantWorkspace({ onLogout }) {
                                         className: "h-5 w-5"
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 783,
+                                        lineNumber: 790,
                                         columnNumber: 144
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 783,
+                                    lineNumber: 790,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1604,7 +1607,7 @@ function MerchantWorkspace({ onLogout }) {
                                             children: "Settley"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 785,
+                                            lineNumber: 792,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1612,19 +1615,19 @@ function MerchantWorkspace({ onLogout }) {
                                             children: "Smart Merchant Reconciliation"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 786,
+                                            lineNumber: 793,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 784,
+                                    lineNumber: 791,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 782,
+                            lineNumber: 789,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1637,7 +1640,7 @@ function MerchantWorkspace({ onLogout }) {
                                             className: "mr-1.5 h-3.5 w-3.5 text-slate-500"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 791,
+                                            lineNumber: 798,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -1651,7 +1654,7 @@ function MerchantWorkspace({ onLogout }) {
                                                     children: "English (US)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                                    lineNumber: 793,
+                                                    lineNumber: 800,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1659,7 +1662,7 @@ function MerchantWorkspace({ onLogout }) {
                                                     children: "हिन्दी (Hindi)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                                    lineNumber: 794,
+                                                    lineNumber: 801,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -1667,19 +1670,19 @@ function MerchantWorkspace({ onLogout }) {
                                                     children: "తెలుగు (Telugu)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                                    lineNumber: 795,
+                                                    lineNumber: 802,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 792,
+                                            lineNumber: 799,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 790,
+                                    lineNumber: 797,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1691,27 +1694,27 @@ function MerchantWorkspace({ onLogout }) {
                                             className: "h-4 w-4"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 798,
+                                            lineNumber: 805,
                                             columnNumber: 178
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-rose-500"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 798,
+                                            lineNumber: 805,
                                             columnNumber: 206
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 798,
+                                    lineNumber: 805,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "hidden h-4 w-px bg-slate-200 sm:block"
                                 }, void 0, false, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 799,
+                                    lineNumber: 806,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1722,7 +1725,7 @@ function MerchantWorkspace({ onLogout }) {
                                             children: "VK"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 800,
+                                            lineNumber: 807,
                                             columnNumber: 66
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1732,7 +1735,7 @@ function MerchantWorkspace({ onLogout }) {
                                                     children: "Vikram Kumar"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                                    lineNumber: 800,
+                                                    lineNumber: 807,
                                                     columnNumber: 196
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1740,25 +1743,25 @@ function MerchantWorkspace({ onLogout }) {
                                                     children: "Acme Retail India"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                                    lineNumber: 800,
+                                                    lineNumber: 807,
                                                     columnNumber: 277
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 800,
+                                            lineNumber: 807,
                                             columnNumber: 191
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 800,
+                                    lineNumber: 807,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 789,
+                            lineNumber: 796,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -1773,30 +1776,30 @@ function MerchantWorkspace({ onLogout }) {
                                             className: "h-3.5 w-3.5"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 805,
+                                            lineNumber: 812,
                                             columnNumber: 17
                                         }, this),
                                         label
                                     ]
                                 }, label, true, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 804,
+                                    lineNumber: 811,
                                     columnNumber: 15
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 802,
+                            lineNumber: 809,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/artifacts/web/app/page.tsx",
-                    lineNumber: 781,
+                    lineNumber: 788,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 780,
+                lineNumber: 787,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -1804,7 +1807,7 @@ function MerchantWorkspace({ onLogout }) {
                 children: renderView()
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 813,
+                lineNumber: 820,
                 columnNumber: 7
             }, this),
             toast && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1814,14 +1817,14 @@ function MerchantWorkspace({ onLogout }) {
                         className: "h-4 w-4 text-emerald-400"
                     }, void 0, false, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 815,
+                        lineNumber: 822,
                         columnNumber: 179
                     }, this),
                     toast
                 ]
             }, void 0, true, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 815,
+                lineNumber: 822,
                 columnNumber: 17
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1832,12 +1835,12 @@ function MerchantWorkspace({ onLogout }) {
                     className: "h-6 w-6"
                 }, void 0, false, {
                     fileName: "[project]/artifacts/web/app/page.tsx",
-                    lineNumber: 818,
+                    lineNumber: 825,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 817,
+                lineNumber: 824,
                 columnNumber: 7
             }, this),
             isChatOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(ChatDrawer, {
@@ -1848,7 +1851,7 @@ function MerchantWorkspace({ onLogout }) {
                 onSend: handleSendChat
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 821,
+                lineNumber: 828,
                 columnNumber: 22
             }, this),
             isLinkModalOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1866,7 +1869,7 @@ function MerchantWorkspace({ onLogout }) {
                                             children: "Razorpay"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 827,
+                                            lineNumber: 834,
                                             columnNumber: 20
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -1874,7 +1877,7 @@ function MerchantWorkspace({ onLogout }) {
                                             children: "Create payment link"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 827,
+                                            lineNumber: 834,
                                             columnNumber: 110
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1882,13 +1885,13 @@ function MerchantWorkspace({ onLogout }) {
                                             children: "Generate a link and add the new order to your ledger."
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 827,
+                                            lineNumber: 834,
                                             columnNumber: 207
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 827,
+                                    lineNumber: 834,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1899,18 +1902,18 @@ function MerchantWorkspace({ onLogout }) {
                                         className: "h-4 w-4"
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 828,
+                                        lineNumber: 835,
                                         columnNumber: 183
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 828,
+                                    lineNumber: 835,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 826,
+                            lineNumber: 833,
                             columnNumber: 13
                         }, this),
                         createdPaymentLink ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1923,22 +1926,31 @@ function MerchantWorkspace({ onLogout }) {
                                             className: "h-4 w-4"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 832,
+                                            lineNumber: 839,
                                             columnNumber: 97
                                         }, this),
-                                        " Payment link created"
+                                        " ",
+                                        createdPaymentLinkIsDemo ? 'Demo payment link created' : 'Payment link created'
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 832,
+                                    lineNumber: 839,
                                     columnNumber: 17
+                                }, this),
+                                createdPaymentLinkIsDemo && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "mt-2 text-xs leading-5 text-amber-800",
+                                    children: "Razorpay credentials are unavailable or invalid, so this is a demo link for testing. Add valid keys to create a live payment link."
+                                }, void 0, false, {
+                                    fileName: "[project]/artifacts/web/app/page.tsx",
+                                    lineNumber: 840,
+                                    columnNumber: 46
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "mt-2 break-all rounded-lg bg-white p-3 text-xs text-slate-600",
                                     children: createdPaymentLink
                                 }, void 0, false, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 833,
+                                    lineNumber: 841,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1953,7 +1965,7 @@ function MerchantWorkspace({ onLogout }) {
                                             children: "Copy link"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 835,
+                                            lineNumber: 843,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1962,19 +1974,19 @@ function MerchantWorkspace({ onLogout }) {
                                             children: "Done"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 836,
+                                            lineNumber: 844,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 834,
+                                    lineNumber: 842,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 831,
+                            lineNumber: 838,
                             columnNumber: 15
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                             className: "mt-6 space-y-4",
@@ -1993,7 +2005,7 @@ function MerchantWorkspace({ onLogout }) {
                                             placeholder: "Ananya Sharma"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 842,
+                                            lineNumber: 850,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(FormField, {
@@ -2006,13 +2018,13 @@ function MerchantWorkspace({ onLogout }) {
                                             placeholder: "+91 98765 43210"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 843,
+                                            lineNumber: 851,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 841,
+                                    lineNumber: 849,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(FormField, {
@@ -2025,7 +2037,7 @@ function MerchantWorkspace({ onLogout }) {
                                     placeholder: "Annual subscription"
                                 }, void 0, false, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 845,
+                                    lineNumber: 853,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(FormField, {
@@ -2040,7 +2052,7 @@ function MerchantWorkspace({ onLogout }) {
                                     min: "1"
                                 }, void 0, false, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 846,
+                                    lineNumber: 854,
                                     columnNumber: 17
                                 }, this),
                                 formError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2048,7 +2060,7 @@ function MerchantWorkspace({ onLogout }) {
                                     children: formError
                                 }, void 0, false, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 847,
+                                    lineNumber: 855,
                                     columnNumber: 31
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2060,37 +2072,37 @@ function MerchantWorkspace({ onLogout }) {
                                             className: "h-4 w-4 animate-spin"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 849,
+                                            lineNumber: 857,
                                             columnNumber: 38
                                         }, this),
                                         isCreatingLink ? 'Creating link…' : 'Generate Razorpay link'
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 848,
+                                    lineNumber: 856,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 840,
+                            lineNumber: 848,
                             columnNumber: 15
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/artifacts/web/app/page.tsx",
-                    lineNumber: 825,
+                    lineNumber: 832,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 824,
+                lineNumber: 831,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/artifacts/web/app/page.tsx",
-        lineNumber: 779,
+        lineNumber: 786,
         columnNumber: 5
     }, this);
 }
@@ -2105,7 +2117,7 @@ function PageIntro({ eyebrow, title, subtitle, action }) {
                         children: eyebrow
                     }, void 0, false, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 862,
+                        lineNumber: 870,
                         columnNumber: 96
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -2113,7 +2125,7 @@ function PageIntro({ eyebrow, title, subtitle, action }) {
                         children: title
                     }, void 0, false, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 862,
+                        lineNumber: 870,
                         columnNumber: 191
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2121,20 +2133,20 @@ function PageIntro({ eyebrow, title, subtitle, action }) {
                         children: subtitle
                     }, void 0, false, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 862,
+                        lineNumber: 870,
                         columnNumber: 277
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 862,
+                lineNumber: 870,
                 columnNumber: 91
             }, this),
             action
         ]
     }, void 0, true, {
         fileName: "[project]/artifacts/web/app/page.tsx",
-        lineNumber: 862,
+        lineNumber: 870,
         columnNumber: 10
     }, this);
 }
@@ -2150,14 +2162,14 @@ function MetricCard({ label, value, detail, detailClass = 'text-slate-500', icon
                         children: label
                     }, void 0, false, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 866,
+                        lineNumber: 874,
                         columnNumber: 151
                     }, this),
                     icon
                 ]
             }, void 0, true, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 866,
+                lineNumber: 874,
                 columnNumber: 85
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2165,7 +2177,7 @@ function MetricCard({ label, value, detail, detailClass = 'text-slate-500', icon
                 children: value
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 866,
+                lineNumber: 874,
                 columnNumber: 215
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2173,13 +2185,13 @@ function MetricCard({ label, value, detail, detailClass = 'text-slate-500', icon
                 children: detail
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 866,
+                lineNumber: 874,
                 columnNumber: 295
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/artifacts/web/app/page.tsx",
-        lineNumber: 866,
+        lineNumber: 874,
         columnNumber: 10
     }, this);
 }
@@ -2195,14 +2207,14 @@ function InfoCard({ label, value, detail, icon }) {
                         children: label
                     }, void 0, false, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 870,
+                        lineNumber: 878,
                         columnNumber: 151
                     }, this),
                     icon
                 ]
             }, void 0, true, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 870,
+                lineNumber: 878,
                 columnNumber: 85
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2210,7 +2222,7 @@ function InfoCard({ label, value, detail, icon }) {
                 children: value
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 870,
+                lineNumber: 878,
                 columnNumber: 215
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2218,13 +2230,13 @@ function InfoCard({ label, value, detail, icon }) {
                 children: detail
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 870,
+                lineNumber: 878,
                 columnNumber: 294
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/artifacts/web/app/page.tsx",
-        lineNumber: 870,
+        lineNumber: 878,
         columnNumber: 10
     }, this);
 }
@@ -2237,7 +2249,7 @@ function SettingRow({ label, value }) {
                 children: label
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 874,
+                lineNumber: 882,
                 columnNumber: 54
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2245,13 +2257,13 @@ function SettingRow({ label, value }) {
                 children: value
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 874,
+                lineNumber: 882,
                 columnNumber: 146
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/artifacts/web/app/page.tsx",
-        lineNumber: 874,
+        lineNumber: 882,
         columnNumber: 10
     }, this);
 }
@@ -2264,7 +2276,7 @@ function FormField({ label, value, onChange, placeholder, type = 'text', min }) 
                 children: label
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 878,
+                lineNumber: 886,
                 columnNumber: 35
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2277,13 +2289,13 @@ function FormField({ label, value, onChange, placeholder, type = 'text', min }) 
                 className: "w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 878,
+                lineNumber: 886,
                 columnNumber: 117
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/artifacts/web/app/page.tsx",
-        lineNumber: 878,
+        lineNumber: 886,
         columnNumber: 10
     }, this);
 }
@@ -2295,7 +2307,7 @@ function StatusPill({ status, t }) {
                 className: "h-3 w-3"
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 883,
+                lineNumber: 891,
                 columnNumber: 89
             }, this),
             label: t.completed
@@ -2306,7 +2318,7 @@ function StatusPill({ status, t }) {
                 className: "h-3 w-3"
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 884,
+                lineNumber: 892,
                 columnNumber: 81
             }, this),
             label: t.pending
@@ -2317,7 +2329,7 @@ function StatusPill({ status, t }) {
                 className: "h-3 w-3"
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 885,
+                lineNumber: 893,
                 columnNumber: 77
             }, this),
             label: t.failed
@@ -2331,7 +2343,7 @@ function StatusPill({ status, t }) {
         ]
     }, void 0, true, {
         fileName: "[project]/artifacts/web/app/page.tsx",
-        lineNumber: 887,
+        lineNumber: 895,
         columnNumber: 10
     }, this);
 }
@@ -2349,7 +2361,7 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                 className: "absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-400"
                             }, void 0, false, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 891,
+                                lineNumber: 899,
                                 columnNumber: 262
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2361,13 +2373,13 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                 "aria-label": "Search transactions"
                             }, void 0, false, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 891,
+                                lineNumber: 899,
                                 columnNumber: 352
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 891,
+                        lineNumber: 899,
                         columnNumber: 217
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2380,7 +2392,7 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                         className: "mr-1.5 h-3.5 w-3.5 text-slate-400"
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 891,
+                                        lineNumber: 899,
                                         columnNumber: 866
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -2394,7 +2406,7 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                                 children: t.allStatuses
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 891,
+                                                lineNumber: 899,
                                                 columnNumber: 1096
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -2402,7 +2414,7 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                                 children: t.completed
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 891,
+                                                lineNumber: 899,
                                                 columnNumber: 1140
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -2410,7 +2422,7 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                                 children: t.pending
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 891,
+                                                lineNumber: 899,
                                                 columnNumber: 1188
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -2418,19 +2430,19 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                                 children: t.failed
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 891,
+                                                lineNumber: 899,
                                                 columnNumber: 1232
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 891,
+                                        lineNumber: 899,
                                         columnNumber: 922
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 891,
+                                lineNumber: 899,
                                 columnNumber: 747
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2441,26 +2453,26 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                         className: "h-3.5 w-3.5 text-slate-500"
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 891,
+                                        lineNumber: 899,
                                         columnNumber: 1483
                                     }, this),
                                     t.export
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 891,
+                                lineNumber: 899,
                                 columnNumber: 1289
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 891,
+                        lineNumber: 899,
                         columnNumber: 706
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 891,
+                lineNumber: 899,
                 columnNumber: 97
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2473,7 +2485,7 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                 ]
             }, void 0, true, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 891,
+                lineNumber: 899,
                 columnNumber: 1565
             }, this),
             transactions.length ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2490,7 +2502,7 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                         children: t.orderId
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 891,
+                                        lineNumber: 899,
                                         columnNumber: 1952
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2498,7 +2510,7 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                         children: t.customer
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 891,
+                                        lineNumber: 899,
                                         columnNumber: 1994
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2506,7 +2518,7 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                         children: "Method"
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 891,
+                                        lineNumber: 899,
                                         columnNumber: 2037
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2514,7 +2526,7 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                         children: t.amount
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 891,
+                                        lineNumber: 899,
                                         columnNumber: 2074
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2522,7 +2534,7 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                         children: t.status
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 891,
+                                        lineNumber: 899,
                                         columnNumber: 2115
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2530,18 +2542,18 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                         children: t.action
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 891,
+                                        lineNumber: 899,
                                         columnNumber: 2156
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 891,
+                                lineNumber: 899,
                                 columnNumber: 1948
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 891,
+                            lineNumber: 899,
                             columnNumber: 1825
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -2558,13 +2570,13 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                                     children: transaction.date
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                                    lineNumber: 891,
+                                                    lineNumber: 899,
                                                     columnNumber: 2441
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 891,
+                                            lineNumber: 899,
                                             columnNumber: 2370
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2575,7 +2587,7 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                                     children: transaction.customer
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                                    lineNumber: 891,
+                                                    lineNumber: 899,
                                                     columnNumber: 2553
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2583,13 +2595,13 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                                     children: transaction.phone
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                                    lineNumber: 891,
+                                                    lineNumber: 899,
                                                     columnNumber: 2621
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 891,
+                                            lineNumber: 899,
                                             columnNumber: 2527
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2597,7 +2609,7 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                             children: transaction.method
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 891,
+                                            lineNumber: 899,
                                             columnNumber: 2691
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2605,7 +2617,7 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                             children: formatINR(transaction.amount)
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 891,
+                                            lineNumber: 899,
                                             columnNumber: 2757
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2615,12 +2627,12 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                                 t: t
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 891,
+                                                lineNumber: 899,
                                                 columnNumber: 2874
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 891,
+                                            lineNumber: 899,
                                             columnNumber: 2848
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2634,60 +2646,60 @@ function TransactionTable({ transactions, total, t, searchQuery, onSearch, statu
                                                         className: "h-3 w-3"
                                                     }, void 0, false, {
                                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                                        lineNumber: 891,
+                                                        lineNumber: 899,
                                                         columnNumber: 3118
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                                lineNumber: 891,
+                                                lineNumber: 899,
                                                 columnNumber: 2964
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/web/app/page.tsx",
-                                            lineNumber: 891,
+                                            lineNumber: 899,
                                             columnNumber: 2927
                                         }, this)
                                     ]
                                 }, transaction.id, true, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 891,
+                                    lineNumber: 899,
                                     columnNumber: 2301
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 891,
+                            lineNumber: 899,
                             columnNumber: 2221
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/artifacts/web/app/page.tsx",
-                    lineNumber: 891,
+                    lineNumber: 899,
                     columnNumber: 1752
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 891,
+                lineNumber: 899,
                 columnNumber: 1719
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(EmptyState, {
                 icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$lucide$2d$react$40$0$2e$545$2e$0_react$40$19$2e$1$2e$0$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__["Search"], {
                     className: "h-6 w-6"
                 }, void 0, false, {
                     fileName: "[project]/artifacts/web/app/page.tsx",
-                    lineNumber: 891,
+                    lineNumber: 899,
                     columnNumber: 3218
                 }, this),
                 title: "No transactions found",
                 detail: "Try a different search or status filter."
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 891,
+                lineNumber: 899,
                 columnNumber: 3200
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/artifacts/web/app/page.tsx",
-        lineNumber: 891,
+        lineNumber: 899,
         columnNumber: 10
     }, this);
 }
@@ -2701,7 +2713,7 @@ function EmptyState({ icon, title, detail }) {
                 children: title
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 895,
+                lineNumber: 903,
                 columnNumber: 113
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2709,13 +2721,13 @@ function EmptyState({ icon, title, detail }) {
                 children: detail
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 895,
+                lineNumber: 903,
                 columnNumber: 181
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/artifacts/web/app/page.tsx",
-        lineNumber: 895,
+        lineNumber: 903,
         columnNumber: 10
     }, this);
 }
@@ -2735,12 +2747,12 @@ function ChatDrawer({ messages, input, onInput, onClose, onSend }) {
                                     className: "h-5 w-5"
                                 }, void 0, false, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 899,
+                                    lineNumber: 907,
                                     columnNumber: 413
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 899,
+                                lineNumber: 907,
                                 columnNumber: 332
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2750,7 +2762,7 @@ function ChatDrawer({ messages, input, onInput, onClose, onSend }) {
                                         children: "Settley AI Help"
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 899,
+                                        lineNumber: 907,
                                         columnNumber: 451
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2758,19 +2770,19 @@ function ChatDrawer({ messages, input, onInput, onClose, onSend }) {
                                         children: "Instant merchant support"
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/web/app/page.tsx",
-                                        lineNumber: 899,
+                                        lineNumber: 907,
                                         columnNumber: 507
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 899,
+                                lineNumber: 907,
                                 columnNumber: 446
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 899,
+                        lineNumber: 907,
                         columnNumber: 291
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2781,18 +2793,18 @@ function ChatDrawer({ messages, input, onInput, onClose, onSend }) {
                             className: "h-4 w-4"
                         }, void 0, false, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 899,
+                            lineNumber: 907,
                             columnNumber: 740
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 899,
+                        lineNumber: 907,
                         columnNumber: 589
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 899,
+                lineNumber: 907,
                 columnNumber: 206
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2804,17 +2816,17 @@ function ChatDrawer({ messages, input, onInput, onClose, onSend }) {
                             children: message.text
                         }, void 0, false, {
                             fileName: "[project]/artifacts/web/app/page.tsx",
-                            lineNumber: 899,
+                            lineNumber: 907,
                             columnNumber: 975
                         }, this)
                     }, message.id, false, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 899,
+                        lineNumber: 907,
                         columnNumber: 873
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 899,
+                lineNumber: 907,
                 columnNumber: 780
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2832,7 +2844,7 @@ function ChatDrawer({ messages, input, onInput, onClose, onSend }) {
                                 "aria-label": "Ask Settley AI Help"
                             }, void 0, false, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 899,
+                                lineNumber: 907,
                                 columnNumber: 1342
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2843,18 +2855,18 @@ function ChatDrawer({ messages, input, onInput, onClose, onSend }) {
                                     className: "h-4 w-4"
                                 }, void 0, false, {
                                     fileName: "[project]/artifacts/web/app/page.tsx",
-                                    lineNumber: 899,
+                                    lineNumber: 907,
                                     columnNumber: 1831
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/artifacts/web/app/page.tsx",
-                                lineNumber: 899,
+                                lineNumber: 907,
                                 columnNumber: 1638
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 899,
+                        lineNumber: 907,
                         columnNumber: 1282
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$4_$40$types$2b$node$40$25$2e$9$2e$5_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2862,19 +2874,19 @@ function ChatDrawer({ messages, input, onInput, onClose, onSend }) {
                         children: "Try: “Why is order ORD-9480 pending?”"
                     }, void 0, false, {
                         fileName: "[project]/artifacts/web/app/page.tsx",
-                        lineNumber: 899,
+                        lineNumber: 907,
                         columnNumber: 1875
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/artifacts/web/app/page.tsx",
-                lineNumber: 899,
+                lineNumber: 907,
                 columnNumber: 1226
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/artifacts/web/app/page.tsx",
-        lineNumber: 899,
+        lineNumber: 907,
         columnNumber: 10
     }, this);
 }
